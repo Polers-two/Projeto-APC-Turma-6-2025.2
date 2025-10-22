@@ -1,9 +1,9 @@
 #Especificação do Projeto 
 ## Equipe
 - **Paulo Victor**
-- [Nome do integrante 2]
-- [Nome do integrante 3]
-- [Nome do integrante 4]
+- Diego Guedes
+- Rafael Simões de Paula
+- Kawan Ubirajara Dos Santos Dias Borges
 
 ---
 
