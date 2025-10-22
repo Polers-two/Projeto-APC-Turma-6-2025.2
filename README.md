@@ -4,6 +4,7 @@
 - Diego Guedes
 - Rafael Simões de Paula
 - Kawan Ubirajara Dos Santos Dias Borges
+- Carlos Eduardo Pereira Dos Santos
 
 ---
 
