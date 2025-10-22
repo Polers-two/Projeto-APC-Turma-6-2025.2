@@ -1,9 +1,5 @@
-# 🧾 Especificação do Projeto — EnergyTrack
-
-## 🎯 Título
-**EnergyTrack – Sistema de Cálculo e Gerenciamento de Consumo Energético**
-
-## 👥 Equipe
+#Especificação do Projeto 
+## Equipe
 - **Paulo Victor**
 - [Nome do integrante 2]
 - [Nome do integrante 3]
@@ -11,14 +7,14 @@
 
 ---
 
-## 🧠 Problema
+## Problema
 
 O aumento do consumo de energia elétrica e o desperdício doméstico estão diretamente ligados a altos custos e impactos ambientais.  
 Muitas pessoas desconhecem o real gasto energético de seus aparelhos, o que dificulta a adoção de práticas mais sustentáveis.
 
 ---
 
-## 🎯 Objetivo Geral
+## Objetivo Geral
 Desenvolver um sistema em Python com interface gráfica que permita:
 - O **cadastro de usuários e eletrodomésticos**;
 - O **cálculo automático de consumo (kWh)** e custo estimado;
@@ -26,40 +22,29 @@ Desenvolver um sistema em Python com interface gráfica que permita:
 
 ---
 
-## 🧩 Objetivos Específicos
-- Implementar um sistema orientado a objetos (classes `Cliente` e `Sistema`);
-- Criar uma interface visual simples e intuitiva (Tkinter);
+## Objetivos Específicos
+- Implementar um sistema orientado a objetos;
+- Criar uma interface visual simples e intuitiva;
 - Aplicar conceitos de algoritmos e pensamento computacional;
-- Exportar relatórios de consumo para Excel com Pandas;
+- Exportar relatórios de consumo em formatos comuns (CSV, xlsx, xlsm);
 - Validar o sistema com dados reais ou simulados de consumo.
 
----
 
-## 🧮 Metodologia
-O projeto segue uma metodologia **iterativa e incremental**, sendo desenvolvido em quatro fases:
-
-1. **Planejamento e Especificação** — definição do escopo e requisitos;  
-2. **Desenvolvimento** — codificação das classes e interface;  
-3. **Testes e Validação** — execução de testes com usuários simulados;  
-4. **Análise e Divulgação** — exportação dos resultados e apresentação pública.
-
----
-
-## 📊 Requisitos Funcionais
-| ID | Descrição | Prioridade |
-|----|------------|-------------|
-| RF01 | Cadastrar usuário com nome e CPF | Alta |
-| RF02 | Adicionar eletrodomésticos e dados de uso | Alta |
-| RF03 | Calcular consumo automático em kWh | Alta |
-| RF04 | Calcular custo mensal com base no preço do kWh | Alta |
-| RF05 | Exibir relatório na interface | Média |
-| RF06 | Exportar relatório para Excel | Alta |
-| RF07 | Ajustar preço do kWh conforme bandeira tarifária | Média |
-| RF08 | Interface gráfica com Tkinter | Alta |
+## Requisitos Funcionais
+| ID | Descrição |
+|----|------------|
+| RF01 | Cadastrar usuário com nome e identificação 
+| RF02 | Adicionar eletrodomésticos e dados de uso 
+| RF03 | Calcular consumo automático em kWh 
+| RF04 | Calcular custo mensal com base no preço do kWh 
+| RF05 | Exibir relatório na interface 
+| RF06 | Exportar relatório 
+| RF07 | Ajustar preço do kWh conforme bandeira tarifária
+| RF08 | Interface gráfica com Tkinter 
 
 ---
 
-## ⚙️ Requisitos Não Funcionais
+## Requisitos Não Funcionais
 - Linguagem: **Python 3.12+**
 - Bibliotecas: `tkinter`, `pandas`, `openpyxl`
 - Compatível com Windows, Linux e macOS
@@ -68,25 +53,8 @@ O projeto segue uma metodologia **iterativa e incremental**, sendo desenvolvido 
 
 ---
 
-## 📅 Cronograma
-| Etapa | Período | Entregável |
-|--------|----------|------------|
-| Planejamento | 07–23/10 | Especificação no Moodle |
-| Protótipo | 24/10–13/11 | Vídeo + Poster Parcial |
-| Testes e Ajustes | 14/11–01/12 | Validação Experimental |
-| Entrega Final | 02/12 | Código + Apresentação |
-
----
-
-## 🔋 Resultados Esperados
+## Resultados Esperados
 - Sistema funcional, modular e com interface amigável;
 - Relatórios exportáveis e replicáveis em Excel;
 - Conscientização sobre consumo energético;
 - Demonstração prática dos conhecimentos de programação e sustentabilidade.
-
----
-
-## 📚 Referências
-- ANEEL — [https://www.aneel.gov.br/](https://www.aneel.gov.br/)  
-- Python Docs — [https://docs.python.org/3/library/tkinter.html](https://docs.python.org/3/library/tkinter.html)  
-- Pandas Library — [https://pandas.pydata.org](https://pandas.pydata.org)
