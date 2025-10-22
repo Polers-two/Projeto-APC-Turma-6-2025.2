@@ -40,7 +40,7 @@ Desenvolver um sistema em Python com interface gráfica que permita:
 | RF05 | Exibir relatório na interface 
 | RF06 | Exportar relatório 
 | RF07 | Ajustar preço do kWh conforme bandeira tarifária
-| RF08 | Interface gráfica com Tkinter 
+| RF08 | Interface gráfica 
 
 ---
 
