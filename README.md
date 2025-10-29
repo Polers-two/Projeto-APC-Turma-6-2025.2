@@ -1,61 +1,92 @@
-#Especificação do Projeto 
-## Equipe
+## Grupo
 - **Paulo Victor**
-- Diego Guedes
-- Rafael Simões de Paula
-- Kawan Ubirajara Dos Santos Dias Borges
-- Carlos Eduardo Pereira Dos Santos
+- **Diego Guedes**
+- **Rafael Simões de Paula**
+- **Kawan Ubirajara Dos Santos Dias Borges**
+- **Carlos Eduardo Pereira Dos Santos**
 
 ---
 
-## Problema
+## Especificação do Projeto
 
-O aumento do consumo de energia elétrica e o desperdício doméstico estão diretamente ligados a altos custos e impactos ambientais.  
-Muitas pessoas desconhecem o real gasto energético de seus aparelhos, o que dificulta a adoção de práticas mais sustentáveis.
+### Problema
+O crescimento exponencial do uso de tecnologias e do desenvolvimento de softwares vem aumentando o **consumo global de energia elétrica**, especialmente em aplicações que demandam **grande poder computacional**, como algoritmos de ordenação massivos e **modelos de Inteligência Artificial (IA)**.
 
----
-
-## Objetivo Geral
-Desenvolver um sistema em Python com interface gráfica que permita:
-- O **cadastro de usuários e eletrodomésticos**;
-- O **cálculo automático de consumo (kWh)** e custo estimado;
-- A **geração de relatórios** para acompanhamento e conscientização.
+Apesar disso, muitos desenvolvedores e usuários desconhecem o **impacto ambiental** causado pela execução de algoritmos ineficientes, que consomem mais energia e geram maiores emissões de carbono.  
+Esse desconhecimento impede a adoção de práticas de **programação sustentável**.
 
 ---
 
-## Objetivos Específicos
-- Implementar um sistema orientado a objetos;
-- Criar uma interface visual simples e intuitiva;
-- Aplicar conceitos de algoritmos e pensamento computacional;
-- Exportar relatórios de consumo em formatos comuns (CSV, xlsx, xlsm);
-- Validar o sistema com dados reais ou simulados de consumo.
+### Objetivo Geral
+Desenvolver um sistema em **Python 3** que analisa e compara o **gasto energético estimado** de algoritmos comuns (como *Merge Sort*, *Quick Sort*, *Bubble Sort*, etc.) com implementações em outras linguagens de programação e, se possível, com modelos de IA de uso comum (como ChatGPT e LLaMA).
 
+O sistema deve apresentar relatórios e gráficos que demonstrem como a **eficiência de algoritmos e linguagens impacta o meio ambiente**, incentivando práticas de **computação sustentável**.
 
-## Requisitos Funcionais
+---
+
+### Objetivos Específicos
+- Implementar um simulador que:
+  - Meça o **tempo de execução** e o **uso de CPU** de diferentes algoritmos;
+  - Converta esses dados em **consumo energético (kWh)** e **emissão de CO₂**;
+  - Gere **gráficos comparativos** entre algoritmos e linguagens;
+- Aplicar **conceitos de análise de complexidade** e **pensamento computacional**;
+- Relacionar eficiência computacional com **sustentabilidade ambiental**;
+- Utilizar **metodologia científica** para coleta e análise de dados reais;
+- Exportar relatórios de resultados em formatos como **CSV** e **PNG**;
+- Apresentar os resultados de forma visual, clara e replicável.
+
+---
+
+## ⚙️ Requisitos Funcionais
 | ID | Descrição |
 |----|------------|
-| RF01 | Cadastrar usuário com nome e identificação 
-| RF02 | Adicionar eletrodomésticos e dados de uso 
-| RF03 | Calcular consumo automático em kWh 
-| RF04 | Calcular custo mensal com base no preço do kWh 
-| RF05 | Exibir relatório na interface 
-| RF06 | Exportar relatório 
-| RF07 | Ajustar preço do kWh conforme bandeira tarifária
-| RF08 | Interface gráfica 
+| RF01 | Executar algoritmos clássicos de ordenação (Merge, Quick, Bubble, Insertion, Selection) |
+| RF02 | Medir tempo de execução e uso de CPU |
+| RF03 | Calcular consumo energético estimado (kWh) |
+| RF04 | Calcular emissões de CO₂ e uso de água equivalentes |
+| RF05 | Gerar gráficos comparativos de desempenho e energia |
+| RF06 | Exportar resultados em formatos CSV e imagem |
+| RF07 | Permitir comparação entre linguagens e modelos de IA |
+| RF08 | Exibir resumo e relatório final de resultados |
 
 ---
 
 ## Requisitos Não Funcionais
-- Linguagem: **Python 3.12+**
-- Bibliotecas: `tkinter`, `pandas`, `openpyxl`
-- Compatível com Windows, Linux e macOS
-- Interface simples e responsiva
-- Código modular e comentado
+- **Linguagem:** Python 3.10+  
+- **Bibliotecas Principais:** `pandas`, `numpy`, `matplotlib`, `psutil`, `seaborn`  
+- **Interface:** CLI (linha de comando) com visualização gráfica de resultados  
+- **Código:** Modular, comentado e de fácil manutenção  
+- **Documentação:** README completo, relatório metodológico e pôster de apresentação  
 
 ---
 
-## Resultados Esperados
-- Sistema funcional, modular e com interface amigável;
-- Relatórios exportáveis e replicáveis em Excel;
-- Conscientização sobre consumo energético;
-- Demonstração prática dos conhecimentos de programação e sustentabilidade.
+## Fórmulas e Cálculos Utilizados
+
+**Energia estimada (kWh):**
+
+E = (P_CPU × T) / 3600
+
+onde:
+- P_CPU = potência média da CPU (em watts)
+- T = tempo de execução (em segundos)
+
+**Emissão de CO₂ (g):**
+
+CO₂ = E × 426
+
+fonte: https://www.iea.org/reports/electricity-2025/emissions
+
+(475 gCO₂/kWh é uma média global para geração elétrica)
+
+---
+
+## Metodologia Científica
+1. **Problema:** Como a eficiência de diferentes algoritmos e linguagens influencia o consumo energético computacional?  
+2. **Hipótese:** Algoritmos com menor complexidade consomem menos energia e emitem menos CO₂.  
+3. **Coleta de Dados:** Medições de tempo de execução e uso de CPU em diferentes algoritmos e linguagens.  
+4. **Cálculo Ambiental:** Conversão dos resultados em energia, CO₂ e água.  
+5. **Análise:** Comparação entre algoritmos e visualização gráfica.  
+6. **Conclusão:** Identificação de práticas e algoritmos mais sustentáveis.
+
+---
+
