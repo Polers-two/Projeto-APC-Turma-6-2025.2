@@ -25,6 +25,7 @@ O sistema deve apresentar relatórios e gráficos que demonstrem como a **efici�
 ---
 
 ### Objetivos Específicos
+- Aplicar conceitos de Algoritmos e Programação de Computadores em um contexto ambiental.
 - Implementar um simulador que:
   - Meça o **tempo de execução** e o **uso de CPU** de diferentes algoritmos;
   - Converta esses dados em **consumo energético (kWh)** e **emissão de CO₂**;
