@@ -37,7 +37,7 @@ O sistema deve apresentar relatórios e gráficos que demonstrem como a **efici�
 
 ---
 
-## ⚙️ Requisitos Funcionais
+## Requisitos Funcionais
 | ID | Descrição |
 |----|------------|
 | RF01 | Executar algoritmos clássicos de ordenação (Merge, Quick, Bubble, Insertion, Selection) |
@@ -90,3 +90,13 @@ fonte: https://www.iea.org/reports/electricity-2025/emissions
 
 ---
 
+## Requisitos
+| Biblioteca     | Principal função           | No projeto serve para...         |
+| -------------- | -------------------------- | -------------------------------- |
+| **pandas**     | Manipular dados tabulares  | Organizar e salvar resultados    |
+| **matplotlib** | Fazer gráficos             | Mostrar comparações visuais      |
+| **psutil**     | Medir CPU e energia        | Coletar dados de execução        |
+| **numpy**      | Cálculos rápidos           | Gerar dados e estatísticas       |
+| **seaborn**    | Gráficos bonitos e simples | Visualizar resultados finais     |
+
+---
