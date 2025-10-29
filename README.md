@@ -77,7 +77,7 @@ CO₂ = E × 426
 
 fonte: https://www.iea.org/reports/electricity-2025/emissions
 
-(475 gCO₂/kWh é uma média global para geração elétrica)
+(426 gCO₂/kWh é uma média global para geração elétrica em 2025)
 
 ---
 
