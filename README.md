@@ -1,12 +1,3 @@
-## Grupo
-- **Paulo Victor**
-- **Diego Guedes**
-- **Rafael Simões de Paula**
-- **Kawan Ubirajara Dos Santos Dias Borges**
-- **Carlos Eduardo Pereira Dos Santos**
-
----
-
 ## Especificação do Projeto
 
 ### Problema
@@ -44,7 +35,7 @@ O sistema deve apresentar relatórios e gráficos que demonstrem como a **efici�
 | RF01 | Executar algoritmos clássicos de ordenação (Merge, Quick, Bubble, Insertion, Selection) |
 | RF02 | Medir tempo de execução e uso de CPU |
 | RF03 | Calcular consumo energético estimado (kWh) |
-| RF04 | Calcular emissões de CO₂ e uso de água equivalentes |
+| RF04 | Calcular emissões de CO2 e uso de água equivalentes |
 | RF05 | Gerar gráficos comparativos de desempenho e energia |
 | RF06 | Exportar resultados em formatos CSV e imagem |
 | RF07 | Permitir comparação entre linguagens e modelos de IA |
@@ -71,13 +62,13 @@ onde:
 - P_CPU = potência média da CPU (em watts)
 - T = tempo de execução (em segundos)
 
-**Emissão de CO₂ (g):**
+**Emissão de CO2 (g):**
 
-CO₂ = E × 426
+CO2 = E × 426
 
 fonte: https://www.iea.org/reports/electricity-2025/emissions
 
-(426 gCO₂/kWh é uma média global para geração elétrica em 2025)
+(426 gCO2/kWh é uma média global para geração elétrica em 2025)
 
 ---
 
@@ -99,5 +90,14 @@ fonte: https://www.iea.org/reports/electricity-2025/emissions
 | **psutil**     | Medir CPU e energia        | Coletar dados de execução        |
 | **numpy**      | Cálculos rápidos           | Gerar dados e estatísticas       |
 | **seaborn**    | Gráficos bonitos e simples | Visualizar resultados finais     |
+
+---
+
+## Grupo
+- **Paulo Victor**
+- **Diego Guedes**
+- **Rafael Simões de Paula**
+- **Kawan Ubirajara Dos Santos Dias Borges**
+- **Carlos Eduardo Pereira Dos Santos**
 
 ---
