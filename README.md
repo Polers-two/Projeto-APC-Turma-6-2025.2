@@ -74,9 +74,9 @@ fonte: https://www.iea.org/reports/electricity-2025/emissions
 
 ## Metodologia Científica
 1. **Problema:** Como a eficiência de diferentes algoritmos e linguagens influencia o consumo energético computacional?  
-2. **Hipótese:** Algoritmos com menor complexidade consomem menos energia e emitem menos CO₂.  
+2. **Hipótese:** Algoritmos com menor complexidade consomem menos energia e emitem menos CO2.  
 3. **Coleta de Dados:** Medições de tempo de execução e uso de CPU em diferentes algoritmos e linguagens.  
-4. **Cálculo Ambiental:** Conversão dos resultados em energia, CO₂ e água.  
+4. **Cálculo Ambiental:** Conversão dos resultados em energia, CO2 e água.  
 5. **Análise:** Comparação entre algoritmos e visualização gráfica.  
 6. **Conclusão:** Identificação de práticas e algoritmos mais sustentáveis.
 
