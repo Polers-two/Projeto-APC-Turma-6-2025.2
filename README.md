@@ -99,5 +99,6 @@ fonte: https://www.iea.org/reports/electricity-2025/emissions
 - **Rafael Simões de Paula**
 - **Kawan Ubirajara Dos Santos Dias Borges**
 - **Carlos Eduardo Pereira Dos Santos**
+- **Gabriel de Medeiros Matos**
 
 ---
