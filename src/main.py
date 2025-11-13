@@ -15,6 +15,7 @@ from engine.metodos_ordenacao import (
 from engine.gerador_listas import gerar_listas, mostrar_info_listas
 from engine.medidor_desempenho import medir_desempenho
 from engine.impacto_ambiental import calcular_impacto
+from engine.gera_plot import plota
 
 
 # ==================== FUNÇÕES PRINCIPAIS ====================
@@ -98,6 +99,22 @@ def comparar_algoritmos(listas_geradas, potencia_cpu=65):
     for nome, funcao in algoritmos:
         print(f"\n>>> Testando {nome}...")
         resultados.append(executar_algoritmo(nome, funcao, lista, potencia_cpu))
+
+# geração de plots
+
+    data = {
+        'Algoritmo': [algoritmo[0] for algoritmo in algoritmos],
+        'Tamanho': [escolha]*4,
+        'Tempo (s)': [resultados[i]['tempo'] for i in range(len(resultados))],
+        'CPU (%)': [resultados[i]['cpu'] for i in range(len(resultados))],
+        'Energia (Wh)': [resultados[i]['energia'] for i in range(len(resultados))],
+        'CO2 (g)': [resultados[i]['co2'] for i in range(len(resultados))]
+    }
+
+    plota('Tempo (s)', 'Tempo de execução (s)', data)
+    plota('CPU (%)', 'Uso de CPU em %', data)
+    plota('Energia (Wh)', 'Consumo energético (Wh)', data)
+    plota('CO2 (g)', 'Emissão de CO₂ (g)', data)
 
     print("\n=== COMPARATIVO FINAL ===")
     print(f"{'Algoritmo':<15}{'Tempo (s)':<12}{'CPU (%)':<10}{'Energia (Wh)':<15}{'CO₂ (g)':<10}")
