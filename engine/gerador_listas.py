@@ -1,31 +1,19 @@
-# engine/gerador_listas.py
-
 import random
+from rich.table import Table
+from rich import print
 
-def gerar_listas():
-    """
-    Gera três listas com tamanhos diferentes:
-    - 1.000 elementos
-    - 10.000 elementos
-    - 100.000 elementos
 
-    Cada lista contém números inteiros aleatórios de 0 a 1.000.000.
-    Retorna um dicionário com as listas.
-    """
-    tamanhos = [1000, 10000, 100000]
-    listas = {}
-
-    for tamanho in tamanhos:
-        lista = [random.randint(0, 1_000_000) for _ in range(tamanho)]
-        listas[tamanho] = lista
-
-    return listas
+def gerar_listas(tamanhos=None):
+    if tamanhos is None:
+        tamanhos = [10, 1000, 10000, 100000]
+    return {t: [random.randint(0, 1_000_000) for _ in range(t)] for t in tamanhos}
 
 
 def mostrar_info_listas(listas):
-    """
-    Exibe informações básicas sobre as listas geradas.
-    """
-    print("\nListas geradas com sucesso:")
-    for tamanho, lista in listas.items():
-        print(f"- Lista com {tamanho} elementos (exemplo: {lista[:5]} ...)")
+    tabela = Table(title="Listas geradas")
+    tabela.add_column("Tamanho")
+    tabela.add_column("Exemplo")
+    for t, lista in listas.items():
+        exemplo = ", ".join(str(x) for x in lista[:6])
+        tabela.add_row(str(t), exemplo + (" ..." if len(lista) > 6 else ""))
+    print(tabela)
