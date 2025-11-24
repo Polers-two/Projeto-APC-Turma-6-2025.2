@@ -62,6 +62,63 @@ def executar(nome, func, lista):
     qtd = IntPrompt.ask("Quantos elementos deseja ver?", default=20)
     console.print(Panel(str(resultado["resultado"][:qtd]), title="Resultado"))
     
+import os
+
+# Garante que o Python enxergue a pasta raiz (onde está "engine/")
+sys.path.append(os.path.dirname(os.path.dirname(__file__)))
+
+from engine.metodos_ordenacao import (
+    bubble_sort,
+    insertion_sort,
+    merge_sort,
+    quick_sort,
+)
+from engine.gerador_listas import gerar_listas, mostrar_info_listas
+from engine.medidor_desempenho import medir_desempenho
+from engine.impacto_ambiental import calcular_impacto
+from engine.gera_plot import plota
+
+
+# ==================== FUNÇÕES PRINCIPAIS ====================
+
+def exibir_menu():
+    print("\n=== MENU DE ALGORITMOS DE ORDENAÇÃO ===")
+    print("1 - Merge Sort")
+    print("2 - Quick Sort")
+    print("3 - Bubble Sort")
+    print("4 - Insertion Sort")
+    print("5 - Gerar listas automáticas")
+    print("6 - Sair")
+    print("7 - Comparar todos os algoritmos automaticamente")
+    print("8 - Mostrar estatísticas médias e ranking")
+    print("========================================")
+
+
+def executar_algoritmo(nome, funcao, lista, potencia_cpu=65):
+    """Executa o algoritmo, mede desempenho e calcula impacto ambiental."""
+    resultado = medir_desempenho(funcao, lista.copy())
+    impacto = calcular_impacto(
+        resultado["tempo_execucao"],
+        resultado["uso_cpu_percent"],
+        potencia_cpu
+    )
+
+    print(f"\n=== {nome} ===")
+    print(f"Tempo de execução: {resultado['tempo_execucao']:.4f} s")
+    print(f"Uso médio de CPU: {resultado['uso_cpu_percent']:.2f}%")
+    print(f"Consumo de energia: {impacto['energia_Wh']:.6f} Wh")
+    print(f"Emissão de CO₂: {impacto['emissao_CO2_g']:.4f} g")
+
+    try:
+        qtd = int(input("Quantos elementos da lista ordenada você quer visualizar? "))
+        if qtd <= 0:
+            qtd = 20
+    except ValueError:
+        qtd = 20
+
+    print(f"Mostrando os {qtd} primeiros elementos ordenados:")
+    print(resultado["resultado"][:qtd])
+
     return {
         "algoritmo": nome,
         "tempo": resultado["tempo_execucao"],
