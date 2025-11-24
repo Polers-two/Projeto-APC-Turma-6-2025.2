@@ -47,7 +47,7 @@ def menu():
 
 
 def executar(nome, func, lista):
-    if nome == "Bogosort" and len(lista) > 10:
+    if nome == "Bogosort" and len(lista) > 100:
         console.print(Panel("Bogosort só pode ser usado com listas até 10 elementos.", style="red"))
         return None
 
