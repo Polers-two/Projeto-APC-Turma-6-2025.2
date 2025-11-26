@@ -74,7 +74,7 @@ uv run python engine/main.py
 
 ```bash
 # Instale as dependências
-pip install matplotlib pandas pillow psutil rich seaborn
+pip install matplotlib pandas pillow psutil rich 
 
 # Execute o programa
 python engine/main.py
@@ -89,7 +89,7 @@ Para usar a comparação com modelos LLM locais:
 # Visite: https://ollama.ai
 
 # Baixe um modelo (exemplo)
-ollama pull llama3.2
+ollama run llama3.2
 ```
 
 ---
@@ -126,7 +126,7 @@ ollama pull llama3.2
 - **Quick Sort**: O(n log n) médio - Particionamento
 - **Bubble Sort**: O(n²) - Comparação de adjacentes
 - **Insertion Sort**: O(n²) - Inserção ordenada
-- **Bogosort**: O((n+1)!) - Apenas educacional (máx 10 elementos)
+- **Bogosort**: O((n+1)!) - Foça bruta (máx 10 elementos)
 
 #### 6: Gerar Listas Automáticas
 Cria listas de teste com tamanhos:
@@ -298,7 +298,7 @@ Implementações dos algoritmos:
 - `quick_sort(lista)` - O(n log n) médio
 - `bubble_sort(lista)` - O(n²)
 - `insertion_sort(lista)` - O(n²)
-- `bogosort(lista)` - O((n+1)!) - Educacional
+- `bogosort(lista)` - O((n+1)!) 
 
 ### `medidor_desempenho.py`
 Função `medir_desempenho(func, *args, **kwargs)`:
