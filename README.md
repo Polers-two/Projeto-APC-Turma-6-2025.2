@@ -149,9 +149,9 @@ Gera visualizações comparativas com matplotlib:
 
 #### 10: Comparar com Outras Linguagens
 Compara resultados Python com benchmarks reais de:
-- **C** (compilado, alta performance)
-- **Java** (JVM, otimizado)
-- **Go** (compilado, concorrente)
+- **C** 
+- **Java** 
+- **Go** 
 
 Opções:
 1. Tabela de comparação de um algoritmo
@@ -205,7 +205,6 @@ O sistema utiliza:
 | **psutil**    | ≥7.1.3    | Medição de CPU e processos          |
 | **rich**      | ≥14.2.0   | Interface CLI elegante              |
 | **numpy**     | ≥2.0.0    | Operações numéricas                 |
-| **seaborn**   | ≥0.13.0   | Visualizações estatísticas          |
 
 ---
 
@@ -260,7 +259,7 @@ uv run python engine/main.py
 
 ## Funcionalidades Extras (Bonificação)
 
-### 1. Interface CLI Avançada (Rich)
+### 1. Interface CLI (Rich)
 - Tabelas formatadas
 - Cores e estilos
 - Painéis informativos
