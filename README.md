@@ -55,7 +55,7 @@ git clone https://github.com/Polers-two/Projeto-APC-Turma-6-2025.2
 cd Projeto-APC-Turma-6-2025.2
 
 # Instale as dependencias
-pip install requirements.txt
+pip install -r requirements.txt
 
 # Execute o programa
 python main.py
