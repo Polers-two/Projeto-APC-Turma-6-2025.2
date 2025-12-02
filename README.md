@@ -65,7 +65,7 @@ python main.py
 
 ```bash
 # Instale as dependências
-pip install matplotlib pandas pillow psutil rich 
+uv sync 
 
 # Execute o programa
 uv run python main.py
