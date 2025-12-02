@@ -6,7 +6,6 @@
 - Diego Guedes
 - Rafael Simoes de Paula
 - Kawan Ubirajara Dos Santos Dias Borges
-- Carlos Eduardo Pereira Dos Santos
 - Gabriel de Medeiros Matos
 
 ## Problema
