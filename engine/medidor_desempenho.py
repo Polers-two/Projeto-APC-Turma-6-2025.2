@@ -1,48 +1,38 @@
 """
-Módulo para medição de desempenho de funções
-Mede tempo de execução e uso de CPU
+Modulo para medir desempenho de funcoes
+Mede tempo de execucao e uso de CPU
 """
 import psutil
 import time
 
 
-def medir_desempenho(func, *args, **kwargs):
+def medir_desempenho(funcao, *args, **kwargs):
     """
-    Mede o desempenho de uma função em termos de tempo e uso de CPU
+    Mede o desempenho de uma funcao
     
-    Args:
-        func: Função a ser medida
-        *args: Argumentos posicionais para a função
-        **kwargs: Argumentos nomeados para a função
+    Parametros:
+        funcao: A funcao que sera medida
+        *args: Argumentos da funcao
+        **kwargs: Argumentos nomeados da funcao
     
-    Returns:
-        Dicionário contendo:
-            - tempo_execucao: Tempo em segundos
-            - uso_cpu_percent: Percentual de uso da CPU
-            - resultado: Resultado retornado pela função
+    Retorna:
+        Dicionario com tempo_execucao, uso_cpu_percent e resultado
     """
     processo = psutil.Process()
-    
-    # Inicializa medição de CPU (primeira chamada sempre retorna 0.0)
     processo.cpu_percent()
     
-    # Marca tempo de início
     tempo_inicio = time.perf_counter()
-    
-    # Executa a função
-    resultado = func(*args, **kwargs)
-    
-    # Marca tempo de fim
+    resultado = funcao(*args, **kwargs)
     tempo_fim = time.perf_counter()
     
-    # Obtém uso de CPU
-    cpu_percent = processo.cpu_percent()
-    
-    # Calcula tempo total
+    uso_cpu = processo.cpu_percent()
     tempo_total = tempo_fim - tempo_inicio
+    
+    if uso_cpu > 100.0:
+        uso_cpu = 100.0
     
     return {
         "tempo_execucao": tempo_total,
-        "uso_cpu_percent": min(cpu_percent, 100.0),  # Garante que não ultrapasse 100%
+        "uso_cpu_percent": uso_cpu,
         "resultado": resultado
     }

@@ -1,139 +1,129 @@
 """
-Módulo com implementações de algoritmos de ordenação
-Todos os algoritmos retornam uma nova lista ordenada sem modificar a original
+Modulo de algoritmos de ordenacao
+Implementa varios metodos para ordenar listas de numeros
 """
 import random
 
 
 def bubble_sort(lista):
     """
-    Algoritmo Bubble Sort - O(n²)
-    Compara elementos adjacentes e os troca se estiverem na ordem errada
-    
-    Args:
-        lista: Lista de elementos comparáveis
-    
-    Returns:
-        Nova lista ordenada
+    Bubble Sort - Compara elementos adjacentes e troca se necessario
+    Complexidade: O(n²)
     """
-    lista = lista[:]
-    n = len(lista)
-    for i in range(n - 1):
-        for j in range(n - i - 1):
-            if lista[j] > lista[j + 1]:
-                lista[j], lista[j + 1] = lista[j + 1], lista[j]
-    return lista
+    lista_copia = lista[:]
+    tamanho = len(lista_copia)
+    
+    for i in range(tamanho - 1):
+        for j in range(tamanho - i - 1):
+            if lista_copia[j] > lista_copia[j + 1]:
+                lista_copia[j], lista_copia[j + 1] = lista_copia[j + 1], lista_copia[j]
+    
+    return lista_copia
 
 
 def insertion_sort(lista):
     """
-    Algoritmo Insertion Sort - O(n²)
-    Constrói a lista ordenada um elemento por vez
-    
-    Args:
-        lista: Lista de elementos comparáveis
-    
-    Returns:
-        Nova lista ordenada
+    Insertion Sort - Insere cada elemento na posicao correta
+    Complexidade: O(n²)
     """
-    lista = lista[:]
-    for i in range(1, len(lista)):
-        chave = lista[i]
-        j = i - 1
-        while j >= 0 and lista[j] > chave:
-            lista[j + 1] = lista[j]
-            j -= 1
-        lista[j + 1] = chave
-    return lista
+    lista_copia = lista[:]
+    
+    for i in range(1, len(lista_copia)):
+        elemento_atual = lista_copia[i]
+        posicao = i - 1
+        
+        while posicao >= 0 and lista_copia[posicao] > elemento_atual:
+            lista_copia[posicao + 1] = lista_copia[posicao]
+            posicao = posicao - 1
+        
+        lista_copia[posicao + 1] = elemento_atual
+    
+    return lista_copia
 
 
 def merge_sort(lista):
     """
-    Algoritmo Merge Sort - O(n log n)
-    Divide a lista recursivamente e depois mescla as partes ordenadas
-    
-    Args:
-        lista: Lista de elementos comparáveis
-    
-    Returns:
-        Nova lista ordenada
+    Merge Sort - Divide a lista em partes menores e depois junta ordenando
+    Complexidade: O(n log n)
     """
     if len(lista) <= 1:
         return lista[:]
+    
     meio = len(lista) // 2
     esquerda = merge_sort(lista[:meio])
     direita = merge_sort(lista[meio:])
-    return merge(esquerda, direita)
+    
+    return juntar_listas(esquerda, direita)
 
 
-def merge(esquerda, direita):
+def juntar_listas(esquerda, direita):
     """
-    Função auxiliar do Merge Sort que mescla duas listas ordenadas
-    
-    Args:
-        esquerda: Lista ordenada
-        direita: Lista ordenada
-    
-    Returns:
-        Lista mesclada e ordenada
+    Funcao auxiliar do Merge Sort
+    Junta duas listas ordenadas em uma lista ordenada
     """
     resultado = []
-    i = j = 0
+    i = 0
+    j = 0
+    
     while i < len(esquerda) and j < len(direita):
         if esquerda[i] < direita[j]:
             resultado.append(esquerda[i])
-            i += 1
+            i = i + 1
         else:
             resultado.append(direita[j])
-            j += 1
-    return resultado + esquerda[i:] + direita[j:]
+            j = j + 1
+    
+    while i < len(esquerda):
+        resultado.append(esquerda[i])
+        i = i + 1
+    
+    while j < len(direita):
+        resultado.append(direita[j])
+        j = j + 1
+    
+    return resultado
 
 
 def quick_sort(lista):
     """
-    Algoritmo Quick Sort - O(n log n) médio, O(n²) pior caso
-    Escolhe um pivô e particiona a lista em elementos menores e maiores
-    
-    Args:
-        lista: Lista de elementos comparáveis
-    
-    Returns:
-        Nova lista ordenada
+    Quick Sort - Escolhe um pivo e separa elementos menores e maiores
+    Complexidade: O(n log n) em media
     """
     if len(lista) <= 1:
         return lista[:]
+    
     pivo = lista[0]
-    menores = [x for x in lista[1:] if x <= pivo]
-    maiores = [x for x in lista[1:] if x > pivo]
+    menores = []
+    maiores = []
+    
+    for i in range(1, len(lista)):
+        if lista[i] <= pivo:
+            menores.append(lista[i])
+        else:
+            maiores.append(lista[i])
+    
     return quick_sort(menores) + [pivo] + quick_sort(maiores)
 
 
-def esta_ordenada(lista):
+def verificar_ordenada(lista):
     """
-    Verifica se uma lista está ordenada
-    
-    Args:
-        lista: Lista a ser verificada
-    
-    Returns:
-        True se ordenada, False caso contrário
+    Verifica se uma lista esta em ordem crescente
     """
-    return all(lista[i] <= lista[i + 1] for i in range(len(lista) - 1))
+    for i in range(len(lista) - 1):
+        if lista[i] > lista[i + 1]:
+            return False
+    return True
 
 
 def bogosort(lista):
     """
-    Algoritmo Bogosort - O((n+1)!) - APENAS PARA FINS EDUCACIONAIS
-    Embaralha a lista aleatoriamente até que esteja ordenada
-    ATENÇÃO: Extremamente ineficiente! Use apenas com listas pequenas (≤10 elementos)
-    
-    Args:
-        lista: Lista de elementos comparáveis (máximo 10 elementos)
-    
-    Returns:
-        Nova lista ordenada
+    Bogosort - Embaralha ate ficar ordenado
+    Complexidade: O((n+1)!) 
+    Use apenas com listas pequenas (ate 10 elementos)
     """
-    lista = lista[:]
-    while not esta_ordenada(lista):
-        random.shuffle(lista)
-    return lista
+    lista_copia = lista[:]
+    
+    while not verificar_ordenada(lista_copia):
+        random.shuffle(lista_copia)
+    
+    return lista_copia

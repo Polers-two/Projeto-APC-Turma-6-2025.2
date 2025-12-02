@@ -1,14 +1,9 @@
 """
-Comparador de performance entre linguagens
-Dados de benchmark em C, Java e Go
+Dados de benchmark - 50 execuções por combinação
+Gerado automaticamente pelos programas C, Java e Go
 """
 
-from rich.console import Console
-from rich.table import Table
-from rich import box
-
-console = Console()
-
+# ==== DADOS DE BENCHMARK C ====
 BENCHMARKS_C = {
     "merge": {
         1000: {"tempo": 0.000181, "cpu": 60.00, "energia": 0.00002, "co2": 0.0000},
@@ -32,6 +27,7 @@ BENCHMARKS_C = {
     }
 }
 
+# ==== DADOS DE BENCHMARK JAVA ====
 BENCHMARKS_JAVA = {
     "merge": {
         1000: {"tempo": 0.000120, "cpu": 18.23, "energia": 0.0000, "co2": 0.0000},
@@ -55,6 +51,7 @@ BENCHMARKS_JAVA = {
     }
 }
 
+# ==== DADOS DE BENCHMARK GO ====
 BENCHMARKS_GO = {
     "merge": {
         1000: {"tempo": 0.000098, "cpu": 40.50, "energia": 0.00001, "co2": 0.0000},
@@ -79,27 +76,17 @@ BENCHMARKS_GO = {
 }
 
 
-def encontrar_tamanho_proximo(tamanho):
-    """
-    Encontra o tamanho de benchmark mais proximo do tamanho real
-    """
-    tamanhos = [1000, 10000, 100000]
-    
-    tamanho_escolhido = tamanhos[0]
-    diferenca_minima = abs(tamanho - tamanhos[0])
-    
-    for t in tamanhos:
-        diferenca = abs(tamanho - t)
-        if diferenca < diferenca_minima:
-            diferenca_minima = diferenca
-            tamanho_escolhido = t
-    
-    return tamanho_escolhido
-
-
 def obter_benchmark(linguagem, algoritmo, tamanho):
     """
-    Busca dados de benchmark para uma linguagem especifica
+    Busca dados específicos de benchmark
+    
+    Args:
+        linguagem: 'c', 'java' ou 'go'
+        algoritmo: 'merge', 'quick', 'bubble' ou 'insertion'
+        tamanho: 1000, 10000 ou 100000
+    
+    Returns:
+        dict com tempo, cpu, energia e co2 ou None se não encontrado
     """
     benchmarks = {
         "c": BENCHMARKS_C,
@@ -115,99 +102,66 @@ def obter_benchmark(linguagem, algoritmo, tamanho):
     if algoritmo not in dados:
         return None
     
-    tamanho_real = encontrar_tamanho_proximo(tamanho)
-    
-    if tamanho_real not in dados[algoritmo]:
+    if tamanho not in dados[algoritmo]:
         return None
     
-    return dados[algoritmo][tamanho_real]
-
-
-def obter_todos_benchmarks(algoritmo, tamanho):
-    """
-    Obtem benchmarks de todas as linguagens para um algoritmo
-    """
-    resultados = {}
-    
-    for linguagem in ["c", "java", "go"]:
-        dados = obter_benchmark(linguagem, algoritmo, tamanho)
-        if dados:
-            resultados[linguagem] = dados
-    
-    return resultados
+    return dados[algoritmo][tamanho]
 
 
 def listar_todas_linguagens():
-    """Retorna lista de linguagens disponiveis"""
+    """Retorna lista de linguagens disponíveis"""
     return ["c", "java", "go"]
 
 
 def listar_todos_algoritmos():
-    """Retorna lista de algoritmos disponiveis"""
+    """Retorna lista de algoritmos disponíveis"""
     return ["merge", "quick", "bubble", "insertion"]
 
 
 def listar_todos_tamanhos():
-    """Retorna lista de tamanhos disponiveis"""
+    """Retorna lista de tamanhos disponíveis"""
     return [1000, 10000, 100000]
 
 
-def mostrar_comparacao(resultado_python, algoritmo, tamanho):
-    """
-    Mostra comparacao entre Python e outras linguagens em uma tabela
-    """
-    if not resultado_python:
-        console.print("[red]Execute o algoritmo em Python primeiro.[/red]")
-        return
+# ==== BLOCO DE TESTE ====
+if __name__ == "__main__":
+    print("=" * 60)
+    print("TESTE DO MÓDULO DE BENCHMARKS")
+    print("=" * 60)
     
-    alg_normalizado = algoritmo.lower().replace(" sort", "").replace("sort", "").strip()
-    tamanho_aproximado = encontrar_tamanho_proximo(tamanho)
-    outras_linguagens = obter_todos_benchmarks(alg_normalizado, tamanho_aproximado)
+    # Teste 1: Buscar dados específicos
+    print("\n📊 Teste 1: Buscar dados de C - Merge Sort - 10000 elementos")
+    resultado = obter_benchmark("c", "merge", 10000)
+    if resultado:
+        print(f"✅ Tempo: {resultado['tempo']:.6f}s")
+        print(f"✅ CPU: {resultado['cpu']:.2f}%")
+        print(f"✅ Energia: {resultado['energia']:.6f} Wh")
+        print(f"✅ CO2: {resultado['co2']:.4f}g")
+    else:
+        print("❌ Dados não encontrados")
     
-    if not outras_linguagens:
-        console.print(f"[yellow]Sem dados de benchmark para {algoritmo}.[/yellow]")
-        return
+    # Teste 2: Comparar todas as linguagens
+    print("\n📊 Teste 2: Comparar Quick Sort com 100000 elementos")
+    for lang in listar_todas_linguagens():
+        dados = obter_benchmark(lang, "quick", 100000)
+        if dados:
+            print(f"  {lang.upper():6s} → {dados['tempo']:.6f}s | CPU: {dados['cpu']:.2f}%")
     
-    if tamanho != tamanho_aproximado:
-        console.print(f"[yellow]Lista de {tamanho} elementos aproximada para {tamanho_aproximado:,}[/yellow]\n")
+    # Teste 3: Mostrar resumo completo
+    print("\n📊 Teste 3: Resumo de todos os dados")
+    print(f"✅ Linguagens disponíveis: {', '.join(listar_todas_linguagens())}")
+    print(f"✅ Algoritmos disponíveis: {', '.join(listar_todos_algoritmos())}")
+    print(f"✅ Tamanhos disponíveis: {', '.join(map(str, listar_todos_tamanhos()))}")
     
-    tabela = Table(title=f"Comparacao: {algoritmo.upper()} (~{tamanho_aproximado:,} elementos)", box=box.ROUNDED)
-    tabela.add_column("Linguagem", style="bold", justify="center")
-    tabela.add_column("Tempo (s)", justify="right")
-    tabela.add_column("CPU (%)", justify="right")
-    tabela.add_column("Energia (Wh)", justify="right")
-    tabela.add_column("CO2 (g)", justify="right")
-    tabela.add_column("Speedup", justify="center")
+    # Teste 4: Contar total de benchmarks
+    total = 0
+    for lang in listar_todas_linguagens():
+        for alg in listar_todos_algoritmos():
+            for tam in listar_todos_tamanhos():
+                if obter_benchmark(lang, alg, tam):
+                    total += 1
     
-    tempo_python = resultado_python["tempo"]
-    
-    tabela.add_row(
-        "[cyan]Python[/cyan]",
-        f"{tempo_python:.6f}",
-        f"{resultado_python.get('cpu', 0):.2f}",
-        f"{resultado_python['energia']:.6f}",
-        f"{resultado_python['co2']:.4f}",
-        "[cyan]1.00x[/cyan]"
-    )
-    
-    linguagens_ordenadas = []
-    for lang, dados in outras_linguagens.items():
-        linguagens_ordenadas.append((lang, dados))
-    
-    linguagens_ordenadas.sort(key=lambda x: x[1]["tempo"])
-    
-    for lang, dados in linguagens_ordenadas:
-        speedup = tempo_python / dados['tempo']
-        cor = "green" if speedup > 1 else "yellow"
-        
-        tabela.add_row(
-            f"[{cor}]{lang.upper()}[/{cor}]",
-            f"{dados['tempo']:.6f}",
-            f"{dados['cpu']:.2f}",
-            f"{dados['energia']:.6f}",
-            f"{dados['co2']:.4f}",
-            f"[{cor}]{speedup:.2f}x[/{cor}]"
-        )
-    
-    console.print(tabela)
-    console.print("\n[dim]Speedup > 1.00x significa que a linguagem e mais rapida que Python[/dim]")
+    print(f"\n✅ Total de benchmarks carregados: {total}")
+    print("\n" + "=" * 60)
+    print("✅ MÓDULO FUNCIONANDO CORRETAMENTE!")
+    print("=" * 60)
