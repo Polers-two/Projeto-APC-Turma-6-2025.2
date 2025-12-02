@@ -1,3 +1,7 @@
+"""
+Modulo para gerar listas de teste
+Cria listas aleatorias de diferentes tamanhos
+"""
 import random
 from rich.table import Table
 from rich import print
@@ -5,30 +9,46 @@ from rich import print
 
 def gerar_listas(tamanhos=None):
     """
-    Gera listas aleatórias de diferentes tamanhos para testes
+    Gera listas aleatorias para testes
     
-    Args:
-        tamanhos: Lista de tamanhos desejados (padrão: [10, 1000, 10000, 100000])
+    Parametros:
+        tamanhos: Lista com tamanhos desejados
     
-    Returns:
-        Dicionário com tamanho como chave e lista como valor
+    Retorna:
+        Dicionario onde a chave e o tamanho e o valor e a lista
     """
     if tamanhos is None:
         tamanhos = [10, 1000, 10000, 100000]
-    return {t: [random.randint(0, 1_000_000) for _ in range(t)] for t in tamanhos}
+    
+    listas = {}
+    
+    for tamanho in tamanhos:
+        lista = []
+        for i in range(tamanho):
+            numero = random.randint(0, 1000000)
+            lista.append(numero)
+        listas[tamanho] = lista
+    
+    return listas
 
 
 def mostrar_info_listas(listas):
     """
-    Exibe informações sobre as listas geradas
-    
-    Args:
-        listas: Dicionário com listas geradas
+    Mostra informacoes sobre as listas geradas
     """
     tabela = Table(title="Listas geradas")
     tabela.add_column("Tamanho")
-    tabela.add_column("Exemplo")
-    for t, lista in listas.items():
-        exemplo = ", ".join(str(x) for x in lista[:6])
-        tabela.add_row(str(t), exemplo + (" ..." if len(lista) > 6 else ""))
+    tabela.add_column("Exemplo (primeiros elementos)")
+    
+    for tamanho, lista in listas.items():
+        elementos_mostrar = []
+        for i in range(min(6, len(lista))):
+            elementos_mostrar.append(str(lista[i]))
+        
+        exemplo = ", ".join(elementos_mostrar)
+        if len(lista) > 6:
+            exemplo = exemplo + " ..."
+        
+        tabela.add_row(str(tamanho), exemplo)
+    
     print(tabela)

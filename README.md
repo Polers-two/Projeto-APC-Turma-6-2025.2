@@ -1,360 +1,288 @@
-# Projeto APC - Análise de Impacto Ambiental de Algoritmos
+# Projeto APC - Analise de Impacto Ambiental de Algoritmos
 
-## Especificação do Projeto
+## Equipe
 
-### Problema
-O crescimento exponencial do uso de tecnologias e do desenvolvimento de softwares vem aumentando o **consumo global de energia elétrica**, especialmente em aplicações que demandam **grande poder computacional**, como algoritmos de ordenação massivos e **modelos de Inteligência Artificial (IA)**.
+- Paulo Victor
+- Diego Guedes
+- Rafael Simoes de Paula
+- Kawan Ubirajara Dos Santos Dias Borges
+- Carlos Eduardo Pereira Dos Santos
+- Gabriel de Medeiros Matos
 
-Apesar disso, muitos desenvolvedores e usuários desconhecem o **impacto ambiental** causado pela execução de algoritmos ineficientes, que consomem mais energia e geram maiores emissões de carbono.  
-Esse desconhecimento impede a adoção de práticas de **programação sustentável**.
+## Problema
 
----
+O uso crescente de tecnologias e desenvolvimento de softwares tem aumentado significativamente o consumo global de energia eletrica. Aplicacoes que demandam grande poder computacional, como algoritmos de ordenacao massivos e modelos de Inteligencia Artificial, contribuem para esse consumo.
 
-### Objetivo Geral
-Desenvolver um sistema em **Python 3** que analisa e compara o **gasto energético estimado** de algoritmos comuns (como *Merge Sort*, *Quick Sort*, *Bubble Sort*, etc.) com implementações em outras linguagens de programação e, se possível, com modelos de IA de uso comum (como LLaMA via Ollama).
+Muitos desenvolvedores e usuarios desconhecem o impacto ambiental causado pela execucao de algoritmos ineficientes, que consomem mais energia e geram maiores emissoes de carbono. Esse desconhecimento impede a adocao de praticas de programacao sustentavel.
 
-O sistema deve apresentar relatórios e gráficos que demonstrem como a **eficiência de algoritmos e linguagens impacta o meio ambiente**, incentivando práticas de **computação sustentável**.
+## Objetivo
 
----
+Desenvolver um sistema em Python 3 que analisa e compara o gasto energetico estimado de algoritmos comuns de ordenacao (Merge Sort, Quick Sort, Bubble Sort, Insertion Sort e Bogosort) com implementacoes em outras linguagens de programacao (C, Java e Go) e, opcionalmente, com modelos de IA locais usando Ollama.
+
+O sistema apresenta relatorios e graficos que demonstram como a eficiencia de algoritmos e linguagens impacta o meio ambiente, incentivando praticas de computacao sustentavel.
 
 ## Estrutura do Projeto
 
 ```
-projeto-apc/
-├── .venv/                      # Ambiente virtual Python
-├── Lib/                        # Bibliotecas do ambiente
-├── Scripts/                    # Scripts de ativação
-├── share/                      # Recursos compartilhados
-├── engine/                     # CÓDIGO PRINCIPAL
-│   ├── __pycache__/           # Cache Python
-│   ├── __init__.py            # Inicializador do módulo
-│   ├── comparador_linguagens.py  # Comparação Python vs C/Java/Go
-│   ├── gerador_listas.py      # Geração de listas de teste
-│   ├── graficos.py            # Visualizações com matplotlib
-│   ├── impacto_ambiental.py   # Cálculo de energia e CO2
-│   ├── medidor_desempenho.py  # Medição de tempo e CPU
-│   ├── medidor_llm_local.py   # Comparação com LLMs (Ollama)
-│   └── metodos_ordenacao.py   # Algoritmos de ordenação
-├── src/                       # Código fonte
-│   ├── __pycache__/
-│   └── __init__.py
-│   ├── main.py                # Arquivo principal 
-├── .gitignore                 # Arquivos ignorados pelo Git
-├── .lock                      # Lock de dependências
-├── pyproject.toml             # Configuração do projeto
-├── python-version             # Versão do Python
-├── README.md                  # Este arquivo
-└── uv.lock                    # Lock do gerenciador UV
+projeto_apc_revisado/
+├── engine/
+│   ├── __init__.py
+│   ├── comparador_linguagens.py
+│   ├── exportador_csv.py
+│   ├── gerador_listas.py
+│   ├── graficos.py
+│   ├── impacto_ambiental.py
+│   ├── medidor_desempenho.py
+│   ├── medidor_llm_local.py
+│   └── metodos_ordenacao.py
+├── main.py
+├── README.md
+├── requirements.txt
+└── pyproject.toml
 ```
 
----
+## Instalacao
 
-## Instalação e Execução
+### Pre-requisitos
+- Python 3.10 ou superior
+- pip (gerenciador de pacotes Python)
 
-### Pré-requisitos
-- **Python 3.13** ou superior
-- **UV** (gerenciador de pacotes) - Recomendado
-- **Ollama** (opcional) - Para comparação com LLMs
-
-### Instalação com UV (Recomendado)
+### Instalacao com pip
 
 ```bash
-# Clone o repositório
-git clone <seu-repositorio>
-cd projeto-apc
+# Clone o projeto
+git clone https://github.com/Polers-two/Projeto-APC-Turma-6-2025.2
+cd Projeto-APC-Turma-6-2025.2
 
-# Instale as dependências com UV
+# Instale as dependencias
+pip install requirements.txt
+
+# Execute o programa
+python main.py
+```
+
+### Instalacao com UV (opcional)
+
+```bash
+# Instale as dependencias com UV
 uv sync
 
 # Execute o programa
-uv run python engine/main.py
+uv run python main.py
 ```
-
-### Instalação Alternativa (pip)
-
-```bash
-# Instale as dependências
-pip install matplotlib pandas pillow psutil rich seaborn
-
-# Execute o programa
-python engine/main.py
-```
-
-### Funcionalidade LLM (Opcional)
-
-Para usar a comparação com modelos LLM locais:
-
-```bash
-# Instale o Ollama
-# Visite: https://ollama.ai
-
-# Baixe um modelo (exemplo)
-ollama pull llama3.2
-```
-
----
 
 ## Funcionalidades
 
 ### Menu Principal
 
-```
-╭─────────────────────────────────────────────────────────╮
-│                         MENU                            │
-├────────┬────────────────────────────────────────────────┤
-│ Opção  │ Descrição                                      │
-├────────┼────────────────────────────────────────────────┤
-│ 1      │ Merge Sort                                     │
-│ 2      │ Quick Sort                                     │
-│ 3      │ Bubble Sort                                    │
-│ 4      │ Insertion Sort                                 │
-│ 5      │ Bogosort (máx 10 elementos)                    │
-│ 6      │ Gerar listas automáticas                       │
-│ 7      │ Comparar todos                                 │
-│ 8      │ Estatísticas                                   │
-│ 9      │ Gráficos Python                                │
-│ 10     │ Comparar com outras linguagens (C/Java/Go)     │
-│ 11     │ Medir LLM local (Ollama)                       │
-│ 0      │ Sair                                           │
-╰────────┴────────────────────────────────────────────────╯
-```
+O programa oferece as seguintes opcoes:
 
-### Descrição das Funcionalidades
+1. Merge Sort - Algoritmo de ordenacao O(n log n)
+2. Quick Sort - Algoritmo de ordenacao O(n log n) medio
+3. Bubble Sort - Algoritmo de ordenacao O(n²)
+4. Insertion Sort - Algoritmo de ordenacao O(n²)
+5. Bogosort - Algoritmo educacional O((n+1)!) - maximo 10 elementos
+6. Gerar listas automaticas - Cria listas de teste
+7. Comparar todos - Executa todos os algoritmos
+8. Estatisticas - Calcula medias dos resultados
+9. Graficos Python - Gera visualizacoes comparativas
+10. Comparar com outras linguagens - Compara Python com C/Java/Go
+11. Medir LLM local - Compara com modelos de IA (requer Ollama)
+12. Exportar resultados para CSV - Salva dados em arquivos CSV
+0. Sair - Encerra o programa
 
-#### 1-5: Algoritmos de Ordenação
-- **Merge Sort**: O(n log n) - Divide e conquista
-- **Quick Sort**: O(n log n) médio - Particionamento
-- **Bubble Sort**: O(n²) - Comparação de adjacentes
-- **Insertion Sort**: O(n²) - Inserção ordenada
-- **Bogosort**: O((n+1)!) - Apenas educacional (máx 10 elementos)
+### Algoritmos Implementados
 
-#### 6: Gerar Listas Automáticas
-Cria listas de teste com tamanhos:
-- 10 elementos (teste rápido)
+**Merge Sort (O(n log n))**
+Divide a lista em partes menores recursivamente e depois junta as partes ordenadas.
+
+**Quick Sort (O(n log n) medio)**
+Escolhe um pivo e separa a lista em elementos menores e maiores que o pivo.
+
+**Bubble Sort (O(n²))**
+Compara elementos adjacentes e os troca se estiverem na ordem errada.
+
+**Insertion Sort (O(n²))**
+Constroi a lista ordenada inserindo cada elemento na posicao correta.
+
+**Bogosort (O((n+1)!))**
+Embaralha a lista aleatoriamente ate que esteja ordenada. Apenas para fins educacionais.
+
+### Geracao de Listas
+
+O programa gera automaticamente listas de teste com os seguintes tamanhos:
+- 10 elementos (teste rapido)
 - 1.000 elementos (pequeno)
-- 10.000 elementos (médio)
+- 10.000 elementos (medio)
 - 100.000 elementos (grande)
 
-#### 7: Comparar Todos
-Executa todos os algoritmos (exceto Bogosort se lista > 10) e exibe tabela comparativa.
+### Comparacao entre Linguagens
 
-#### 8: Estatísticas
-Calcula médias de tempo, energia e CO2 de todos os algoritmos executados.
+O sistema possui dados de benchmark reais de implementacoes em C, Java e Go para comparacao. Voce pode:
+- Ver tabela comparativa de um algoritmo especifico
+- Gerar grafico comparativo de um algoritmo
+- Gerar grafico comparativo de todos os algoritmos
 
-#### 9: Gráficos Python
-Gera visualizações comparativas com matplotlib:
-- Tempo de execução
-- Consumo de energia
-- Emissão de CO2
+### Exportacao de Dados
 
-#### 10: Comparar com Outras Linguagens
-Compara resultados Python com benchmarks reais de:
-- **C** (compilado, alta performance)
-- **Java** (JVM, otimizado)
-- **Go** (compilado, concorrente)
+Nova funcionalidade que permite exportar:
+- Todos os resultados de execucao para CSV
+- Estatisticas agregadas (medias) para CSV
 
-Opções:
-1. Tabela de comparação de um algoritmo
-2. Gráfico de um algoritmo específico
-3. Gráfico comparativo de todos os algoritmos
+Os arquivos CSV sao salvos no diretorio atual com data e hora no nome.
 
-#### 11: Medir LLM Local
-Compara o impacto ambiental de usar LLMs (via Ollama) para ordenar listas vs algoritmos tradicionais.
+### Integracao com LLM (Opcional)
 
-**Requer**: Ollama instalado e modelo baixado (ex: `ollama pull llama3.2`)
+Se voce tiver o Ollama instalado, pode comparar o impacto ambiental de usar modelos de IA para ordenar listas versus algoritmos tradicionais.
 
----
+Para usar esta funcionalidade:
+1. Instale o Ollama em https://ollama.ai
+2. Baixe um modelo: `ollama pull llama3.2`
+3. Execute a opcao 11 no menu
 
-## Metodologia Científica
+## Metodologia Cientifica
 
-### Fórmulas Utilizadas
+### Formulas Utilizadas
 
-#### Energia Estimada (Wh):
+**Energia Estimada (Wh):**
 ```
 E = (P_CPU × T × Uso_CPU%) / 3600
 ```
 
-**Onde:**
-- `P_CPU` = Potência média da CPU (65W padrão)
-- `T` = Tempo de execução (em segundos)
-- `Uso_CPU%` = Percentual de uso da CPU (0-100)
+Onde:
+- P_CPU = Potencia media da CPU (65W padrao)
+- T = Tempo de execucao (em segundos)
+- Uso_CPU% = Percentual de uso da CPU (0-100)
 
-#### Emissão de CO2 (g):
+**Emissao de CO2 (g):**
 ```
 CO2 = E × 426
 ```
 
-**Fonte**: [IEA - International Energy Agency 2025](https://www.iea.org/reports/electricity-2025/emissions)  
-*426 gCO2/kWh é a média global para geração elétrica em 2025*
+Fonte: IEA (International Energy Agency) 2025
+- 426 gCO2/kWh e a media global para geracao eletrica em 2025
 
-### Medição de Desempenho
+### Medicao de Desempenho
 
 O sistema utiliza:
-- **`time.perf_counter()`**: Medição precisa de tempo
-- **`psutil.Process().cpu_percent()`**: Uso real de CPU
-- **Benchmarks reais**: Dados de C, Java e Go baseados em 50 execuções
+- time.perf_counter() para medicao precisa de tempo
+- psutil.Process().cpu_percent() para uso real de CPU
+- Dados de benchmarks reais para C, Java e Go
 
----
+## Dependencias
 
-## Dependências
-
-| Biblioteca    | Versão    | Função                              |
-|---------------|-----------|-------------------------------------|
-| **matplotlib**| ≥3.10.7   | Geração de gráficos                 |
-| **pillow**    | ≥12.0.0   | Processamento de imagens            |
-| **psutil**    | ≥7.1.3    | Medição de CPU e processos          |
-| **rich**      | ≥14.2.0   | Interface CLI elegante              |
-| **numpy**     | ≥2.0.0    | Operações numéricas                 |
-| **seaborn**   | ≥0.13.0   | Visualizações estatísticas          |
-
----
+| Biblioteca | Versao Minima | Funcao |
+|------------|---------------|---------|
+| matplotlib | 3.10.7 | Geracao de graficos |
+| pillow | 12.0.0 | Processamento de imagens |
+| psutil | 7.1.3 | Medicao de CPU e processos |
+| rich | 14.2.0 | Interface CLI elegante |
 
 ## Requisitos Funcionais
 
-| ID    | Descrição                                              
-|-------|--------------------------------------------------------|
-| RF01  | Executar algoritmos clássicos de ordenação             |
-| RF02  | Medir tempo de execução e uso de CPU                   |
-| RF03  | Calcular consumo energético estimado (kWh)             |
-| RF04  | Calcular emissões de CO2 equivalentes                  |
-| RF05  | Gerar gráficos comparativos de desempenho e energia    |
-| RF06  | Permitir comparação entre linguagens                   |
-| RF07  | Permitir comparação com modelos de IA                  |
-| RF08  | Exibir resumo e relatório final de resultados          |
-------------------------------------------------------------------
-
----
+| ID | Descricao |
+|----|-----------|
+| RF01 | Executar algoritmos classicos de ordenacao |
+| RF02 | Medir tempo de execucao e uso de CPU |
+| RF03 | Calcular consumo energetico estimado |
+| RF04 | Calcular emissoes de CO2 equivalentes |
+| RF05 | Gerar graficos comparativos |
+| RF06 | Permitir comparacao entre linguagens |
+| RF07 | Permitir comparacao com modelos de IA |
+| RF08 | Exibir resumo e relatorio final |
+| RF09 | Exportar dados para formato CSV |
 
 ## Exemplo de Uso
 
 ```bash
 # Execute o programa
-uv run python engine/main.py
+python main.py
 
 # Fluxo recomendado:
-# 1. Escolha opção 6 - Gerar listas automáticas
-# 2. Escolha opção 7 - Comparar todos os algoritmos
+# 1. Escolha opcao 6 - Gerar listas automaticas
+# 2. Escolha opcao 7 - Comparar todos os algoritmos
 #    → Selecione tamanho: 10000
-# 3. Escolha opção 9 - Ver gráficos comparativos
-# 4. Escolha opção 10 - Comparar com outras linguagens
-#    → Opção 3 - Gráfico de todos os algoritmos
-# 5. Escolha opção 11 - Comparar com LLM (se Ollama instalado)
+# 3. Escolha opcao 9 - Ver graficos comparativos
+# 4. Escolha opcao 12 - Exportar resultados para CSV
+# 5. Escolha opcao 10 - Comparar com outras linguagens
 ```
 
-### Exemplo de Saída
+### Exemplo de Saida
 
 ```
-╭──────────────────────────────────────────────────────╮
-│              Comparação (10.000 elementos)           │
-├──────────────┬──────────┬────────┬──────────┬────────┤
-│ Algoritmo    │ Tempo    │ CPU    │ Energia  │ CO2    │
-├──────────────┼──────────┼────────┼──────────┼────────┤
-│ Merge Sort   │ 0.012448 │ 87.48  │ 0.000039 │ 0.0166 │
-│ Quick Sort   │ 0.009974 │ 83.19  │ 0.000015 │ 0.0064 │
-│ Bubble Sort  │ 1.750150 │ 99.86  │ 0.031550 │ 13.440 │
-│ Insertion    │ 0.146610 │ 98.65  │ 0.002610 │ 1.1119 │
-╰──────────────┴──────────┴────────┴──────────┴────────╯
+Comparacao (10.000 elementos)
+┌──────────────┬──────────┬───────┬──────────┬────────┐
+│ Algoritmo    │ Tempo    │ CPU   │ Energia  │ CO2    │
+├──────────────┼──────────┼───────┼──────────┼────────┤
+│ Merge Sort   │ 0.012448 │ 87.48 │ 0.000039 │ 0.0166 │
+│ Quick Sort   │ 0.009974 │ 83.19 │ 0.000015 │ 0.0064 │
+│ Bubble Sort  │ 1.750150 │ 99.86 │ 0.031550 │ 13.440 │
+│ Insertion    │ 0.146610 │ 98.65 │ 0.002610 │ 1.1119 │
+└──────────────┴──────────┴───────┴──────────┴────────┘
 ```
 
----
+## Funcionalidades Extras
 
-## Funcionalidades Extras (Bonificação)
-
-### 1. Interface CLI Avançada (Rich)
+### Interface CLI Avancada
+Utilizacao da biblioteca Rich para criar uma interface de linha de comando elegante com:
 - Tabelas formatadas
 - Cores e estilos
-- Painéis informativos
-- Prompts validados
+- Paineis informativos
+- Validacao de entrada
 
-### 2. Comparação Multi-Linguagem
-- Benchmarks reais de C, Java e Go
-- Cálculo de speedup
-- Gráficos comparativos
+### Comparacao Multi-Linguagem
+Benchmarks reais de C, Java e Go permitem comparar o desempenho de Python com linguagens compiladas.
 
-### 3. Integração com LLMs
-- Suporte a Ollama
-- Comparação de impacto ambiental
-- Análise de custo computacional de IA
+### Visualizacoes com Matplotlib
+Graficos de barras comparativos mostram visualmente as diferencas de:
+- Tempo de execucao
+- Consumo de energia
+- Emissao de CO2
 
-### 4. Visualizações Avançadas
-- Gráficos de barras agrupadas
-- Comparações multi-dimensionais
-- Valores anotados nas barras
+### Analise Estatistica
+Calculo de medias de multiplas execucoes para resultados mais confiáveis.
 
-### 5. Análise Estatística
-- Médias de múltiplas execuções
-- Comparação de eficiência
-- Relatórios detalhados
+### Exportacao de Dados
+Nova funcionalidade que permite salvar todos os resultados e estatisticas em formato CSV para analise posterior.
 
----
+## Documentacao dos Modulos
 
-## Documentação dos Módulos
+### main.py
+Arquivo principal com menu interativo e orquestracao de funcionalidades.
 
-### `main.py`
-Arquivo principal com menu interativo e orquestração de funcionalidades.
+### metodos_ordenacao.py
+Implementacoes dos algoritmos de ordenacao.
 
-### `metodos_ordenacao.py`
-Implementações dos algoritmos:
-- `merge_sort(lista)` - O(n log n)
-- `quick_sort(lista)` - O(n log n) médio
-- `bubble_sort(lista)` - O(n²)
-- `insertion_sort(lista)` - O(n²)
-- `bogosort(lista)` - O((n+1)!) - Educacional
+### medidor_desempenho.py
+Funcao que mede tempo de execucao e uso de CPU.
 
-### `medidor_desempenho.py`
-Função `medir_desempenho(func, *args, **kwargs)`:
-- Mede tempo com `time.perf_counter()`
-- Mede CPU com `psutil.Process().cpu_percent()`
-- Retorna dicionário com resultados
+### impacto_ambiental.py
+Calcula energia consumida e emissao de CO2.
 
-### `impacto_ambiental.py`
-Função `calcular_impacto(tempo, cpu, potencia=65)`:
-- Calcula energia em Wh
-- Calcula emissão de CO2 em gramas
-- Baseado em fórmulas científicas
+### graficos.py
+Funcoes de visualizacao com matplotlib.
 
-### `graficos.py`
-Funções de visualização:
-- `grafico_completo(resultados)` - Gráficos Python
-- `grafico_comparativo_linguagens(...)` - Comparação específica
-- `grafico_comparativo_todos_algoritmos(...)` - Visão geral
+### comparador_linguagens.py
+Benchmarks e comparacoes com outras linguagens.
 
-### `comparador_linguagens.py`
-Benchmarks e comparações:
-- `obter_benchmark(linguagem, algoritmo, tamanho)`
-- `mostrar_comparacao(resultado_python, algoritmo, tamanho)`
-- Dados reais de C, Java e Go
+### medidor_llm_local.py
+Integracao com Ollama para medir LLMs locais.
 
-### `medidor_llm_local.py`
-Integração com Ollama:
-- `verificar_ollama()` - Verifica instalação
-- `listar_modelos()` - Lista modelos disponíveis
-- `medir_llm_local(modelo, lista)` - Mede desempenho
-- `comparar_algoritmo_vs_llm(...)` - Comparação
+### gerador_listas.py
+Geracao de listas de teste com diferentes tamanhos.
 
-### `gerador_listas.py`
-Geração de listas de teste:
-- `gerar_listas()` - Cria listas de 10, 1k, 10k, 100k elementos
-- `mostrar_info_listas(listas)` - Exibe informações
+### exportador_csv.py
+Exportacao de resultados e estatisticas para formato CSV.
 
----
+## Referencias
 
-## Equipe
+- Allen B. Downey, Pense em Python: Pense como um cientista da computacao, 2016.
+- Luciano Ramalho, Python Fluente: Programacao clara, concisa e eficaz, 2015.
+- IEA Emissions Report: https://www.iea.org/reports/electricity-2025/emissions
+- Python psutil: https://psutil.readthedocs.io/
+- Rich Documentation: https://rich.readthedocs.io/
+- Ollama: https://ollama.ai
 
-- **Paulo Victor**
-- **Diego Guedes**
-- **Rafael Simões de Paula**
-- **Kawan Ubirajara Dos Santos Dias Borges**
-- **Carlos Eduardo Pereira Dos Santos**
-- **Gabriel de Medeiros Matos**
+## Licenca
 
----
-
-## Links Úteis
-
-- **Ollama**: https://ollama.ai
-- **IEA Emissions Report**: https://www.iea.org/reports/electricity-2025/emissions
-- **Python psutil**: https://psutil.readthedocs.io/
-- **Rich Documentation**: https://rich.readthedocs.io/
-
----
+Este projeto foi desenvolvido para fins academicos como parte da disciplina CIC0004 - Algoritmos e Programacao de Computadores da Universidade de Brasilia.
