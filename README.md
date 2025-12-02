@@ -276,13 +276,7 @@ Exportacao de resultados e estatisticas para formato CSV.
 
 ## Referencias
 
-- Allen B. Downey, Pense em Python: Pense como um cientista da computacao, 2016.
-- Luciano Ramalho, Python Fluente: Programacao clara, concisa e eficaz, 2015.
 - IEA Emissions Report: https://www.iea.org/reports/electricity-2025/emissions
 - Python psutil: https://psutil.readthedocs.io/
 - Rich Documentation: https://rich.readthedocs.io/
 - Ollama: https://ollama.ai
-
-## Licenca
-
-Este projeto foi desenvolvido para fins academicos como parte da disciplina CIC0004 - Algoritmos e Programacao de Computadores da Universidade de Brasilia.
