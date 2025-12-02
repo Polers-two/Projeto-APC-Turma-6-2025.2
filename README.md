@@ -64,8 +64,8 @@ python main.py
 ### Instalacao com UV (opcional)
 
 ```bash
-# Instale as dependencias com UV
-uv sync
+# Instale as dependências
+pip install matplotlib pandas pillow psutil rich 
 
 # Execute o programa
 uv run python main.py
@@ -77,19 +77,9 @@ uv run python main.py
 
 O programa oferece as seguintes opcoes:
 
-1. Merge Sort - Algoritmo de ordenacao O(n log n)
-2. Quick Sort - Algoritmo de ordenacao O(n log n) medio
-3. Bubble Sort - Algoritmo de ordenacao O(n²)
-4. Insertion Sort - Algoritmo de ordenacao O(n²)
-5. Bogosort - Algoritmo educacional O((n+1)!) - maximo 10 elementos
-6. Gerar listas automaticas - Cria listas de teste
-7. Comparar todos - Executa todos os algoritmos
-8. Estatisticas - Calcula medias dos resultados
-9. Graficos Python - Gera visualizacoes comparativas
-10. Comparar com outras linguagens - Compara Python com C/Java/Go
-11. Medir LLM local - Compara com modelos de IA (requer Ollama)
-12. Exportar resultados para CSV - Salva dados em arquivos CSV
-0. Sair - Encerra o programa
+# Baixe um modelo (exemplo)
+ollama run llama3.2
+```
 
 ### Algoritmos Implementados
 
@@ -105,8 +95,12 @@ Compara elementos adjacentes e os troca se estiverem na ordem errada.
 **Insertion Sort (O(n²))**
 Constroi a lista ordenada inserindo cada elemento na posicao correta.
 
-**Bogosort (O((n+1)!))**
-Embaralha a lista aleatoriamente ate que esteja ordenada. Apenas para fins educacionais.
+#### 1-5: Algoritmos de Ordenação
+- **Merge Sort**: O(n log n) - Divide e conquista
+- **Quick Sort**: O(n log n) médio - Particionamento
+- **Bubble Sort**: O(n²) - Comparação de adjacentes
+- **Insertion Sort**: O(n²) - Inserção ordenada
+- **Bogosort**: O((n+1)!) - Foça bruta (máx 10 elementos)
 
 ### Geracao de Listas
 
@@ -125,9 +119,11 @@ O sistema possui dados de benchmark reais de implementacoes em C, Java e Go para
 
 ### Exportacao de Dados
 
-Nova funcionalidade que permite exportar:
-- Todos os resultados de execucao para CSV
-- Estatisticas agregadas (medias) para CSV
+#### 10: Comparar com Outras Linguagens
+Compara resultados Python com benchmarks reais de:
+- **C** 
+- **Java** 
+- **Go** 
 
 Os arquivos CSV sao salvos no diretorio atual com data e hora no nome.
 
@@ -169,7 +165,13 @@ O sistema utiliza:
 - psutil.Process().cpu_percent() para uso real de CPU
 - Dados de benchmarks reais para C, Java e Go
 
-## Dependencias
+| Biblioteca    | Versão    | Função                              |
+|---------------|-----------|-------------------------------------|
+| **matplotlib**| ≥3.10.7   | Geração de gráficos                 |
+| **pillow**    | ≥12.0.0   | Processamento de imagens            |
+| **psutil**    | ≥7.1.3    | Medição de CPU e processos          |
+| **rich**      | ≥14.2.0   | Interface CLI elegante              |
+| **numpy**     | ≥2.0.0    | Operações numéricas                 |
 
 | Biblioteca | Versao Minima | Funcao |
 |------------|---------------|---------|
@@ -223,12 +225,84 @@ Comparacao (10.000 elementos)
 
 ## Funcionalidades Extras
 
-### Interface CLI Avancada
-Utilizacao da biblioteca Rich para criar uma interface de linha de comando elegante com:
+### 1. Interface CLI (Rich)
 - Tabelas formatadas
 - Cores e estilos
-- Paineis informativos
-- Validacao de entrada
+- Painéis informativos
+- Prompts validados
+
+### 2. Comparação Multi-Linguagem
+- Benchmarks reais de C, Java e Go
+- Cálculo de speedup
+- Gráficos comparativos
+
+### 3. Integração com LLMs
+- Suporte a Ollama
+- Comparação de impacto ambiental
+- Análise de custo computacional de IA
+
+### 4. Visualizações Avançadas
+- Gráficos de barras agrupadas
+- Comparações multi-dimensionais
+- Valores anotados nas barras
+
+### 5. Análise Estatística
+- Médias de múltiplas execuções
+- Comparação de eficiência
+- Relatórios detalhados
+
+---
+
+## Documentação dos Módulos
+
+### `main.py`
+Arquivo principal com menu interativo e orquestração de funcionalidades.
+
+### `metodos_ordenacao.py`
+Implementações dos algoritmos:
+- `merge_sort(lista)` - O(n log n)
+- `quick_sort(lista)` - O(n log n) médio
+- `bubble_sort(lista)` - O(n²)
+- `insertion_sort(lista)` - O(n²)
+- `bogosort(lista)` - O((n+1)!) 
+
+### `medidor_desempenho.py`
+Função `medir_desempenho(func, *args, **kwargs)`:
+- Mede tempo com `time.perf_counter()`
+- Mede CPU com `psutil.Process().cpu_percent()`
+- Retorna dicionário com resultados
+
+### `impacto_ambiental.py`
+Função `calcular_impacto(tempo, cpu, potencia=65)`:
+- Calcula energia em Wh
+- Calcula emissão de CO2 em gramas
+- Baseado em fórmulas científicas
+
+### `graficos.py`
+Funções de visualização:
+- `grafico_completo(resultados)` - Gráficos Python
+- `grafico_comparativo_linguagens(...)` - Comparação específica
+- `grafico_comparativo_todos_algoritmos(...)` - Visão geral
+
+### `comparador_linguagens.py`
+Benchmarks e comparações:
+- `obter_benchmark(linguagem, algoritmo, tamanho)`
+- `mostrar_comparacao(resultado_python, algoritmo, tamanho)`
+- Dados reais de C, Java e Go
+
+### `medidor_llm_local.py`
+Integração com Ollama:
+- `verificar_ollama()` - Verifica instalação
+- `listar_modelos()` - Lista modelos disponíveis
+- `medir_llm_local(modelo, lista)` - Mede desempenho
+- `comparar_algoritmo_vs_llm(...)` - Comparação
+
+### `gerador_listas.py`
+Geração de listas de teste:
+- `gerar_listas()` - Cria listas de 10, 1k, 10k, 100k elementos
+- `mostrar_info_listas(listas)` - Exibe informações
+
+---
 
 ### Comparacao Multi-Linguagem
 Benchmarks reais de C, Java e Go permitem comparar o desempenho de Python com linguagens compiladas.
